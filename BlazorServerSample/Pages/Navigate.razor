@@ -1,0 +1,38 @@
+﻿@page "/navigate"
+@implements IDisposable
+@inject NavigationManager NavigationManager
+
+<h3>Navigate</h3>
+
+<button class="btn btn-primary" @onclick="NavigateToFetchDataComponet">
+    Navigate to the fetchdata component
+</button>
+
+
+@code {
+
+    // 別のコンポーネントへ移動する
+    private void NavigateToFetchDataComponet()
+    {
+        NavigationManager.NavigateTo("fetchdata");
+    }
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += HandleLocationChanged;
+    }
+
+    // LocationChangedイベントハンドラー
+    private void HandleLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        Console.WriteLine("URL of new location: {0}", e.Location);
+    }
+
+    public void Dispose()
+    {
+        // GCを許可
+        NavigationManager.LocationChanged -= HandleLocationChanged;
+    }
+
+
+}

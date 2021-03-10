@@ -1,0 +1,23 @@
+﻿@page "/querystring"
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager NavigationManager
+
+<h3>QueryString</h3>
+
+<p>QueryValue: @queryValue</p>
+
+@code {
+    private string queryValue = "A query string for 'ship' isn't present.";
+
+    protected override void OnInitialized()
+    {
+        //クエリ文字列取得
+        var query = new Uri(NavigationManager.Uri).Query;
+
+        // クエリ解析(?ship=XXXX)
+        if (QueryHelpers.ParseQuery(query).TryGetValue("ship", out var value))
+        {
+            queryValue = value;
+        }
+    }
+}
