@@ -1,9 +1,9 @@
-﻿using BlazorRazor.Data;
+﻿using BlazorServerSample.Data;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 
-namespace BlazorRazor.Pages
+namespace BlazorServerSample.Pages
 {
     // 部分クラスとしてコードビハインドクラスを定義する
     public partial class CodeBehindByPartialClass
